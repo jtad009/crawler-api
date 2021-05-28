@@ -4,4 +4,4 @@ build:
 release:
   image: web
   command:
-    - ./arch/entrypoint.sh
+    - ./arch/scripts/entrypoint.sh
