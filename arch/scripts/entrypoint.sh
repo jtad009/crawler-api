@@ -13,7 +13,7 @@ if [[ $APP_ENV != "local" && $APP_ENV != "test" ]]; then
 fi
 
 #Change directory to APP_WORKSPACE
-if [ -d "$WORKING_DIR/$APP_WORKSPACE"]; then  
+if [ -d "$WORKING_DIR/$APP_WORKSPACE" ]; then  
   cd "$WORKING_DIR/$APP_WORKSPACE" || exit 1
 else
   mkdir -p $APP_WORKSPACE;
