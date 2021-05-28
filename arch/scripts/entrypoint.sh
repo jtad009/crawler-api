@@ -18,7 +18,7 @@ cd "$WORKING_DIR" || exit 1
 #Install dependencies
 echo ">>Running yarn to install or update dependencies..."
 yarn
-
+pwd
 if [ $APP_ENV == "test" ]; then
   chmod +x "$WORKING_DIR/arch/scripts/run-test.sh"
   source "$WORKING_DIR/arch/scripts/run-test.sh" || exit 1
