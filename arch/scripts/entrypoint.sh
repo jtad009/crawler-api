@@ -13,7 +13,7 @@ if [[ $APP_ENV != "local" && $APP_ENV != "test" ]]; then
 fi
 
 #Change directory to APP_WORKSPACE
-cd "$WORKING_DIR/$APP_WORKSPACE" || exit 1
+cd "$WORKING_DIR" || exit 1
 
 #Install dependencies
 echo ">>Running yarn to install or update dependencies..."
