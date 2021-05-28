@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Meta as M, Image } from './meta.entity';
-import { parser, images, isUrl } from 'html-metadata-parser';
+import { parser, isUrl } from 'html-metadata-parser';
 import axios from 'axios';
 import { parse } from 'node-html-parser';
 // import { setupCache } from 'axios-cache-adapter';
@@ -44,12 +44,6 @@ export class CrawlService {
   }
 
   async getHtml(url: string): Promise<Image> {
-    // Create `axios-cache-adapter` instance
-    // const cache = setupCache({
-    //   maxAge: 15 * 60 * 1000,
-    // });
-
-    // // Create `axios` instance passing the newly created `cache.adapter`
     const api = axios.create({
       headers: {
         'User-Agent':

@@ -4,7 +4,7 @@ import { CrawlService } from './crawl.service';
 import { GetUrlArgs } from './dto/args/get-url-args';
 import { Meta } from './meta.entity';
 
-@Resolver((of) => Meta)
+@Resolver(() => Meta)
 export class CrawlResolver {
   constructor(
     private readonly metaService: CrawlService,
@@ -13,6 +13,15 @@ export class CrawlResolver {
 
   @Query(() => Meta)
   async getMetas(@Args() urlArgs: GetUrlArgs): Promise<Meta> {
-    return await this.metaService.getUrlMeta(urlArgs.url);
+    const cachedData = await this.cacheManager.get(urlArgs.url);
+    if (cachedData) {
+      return cachedData;
+    }
+    const serverResponse = await this.metaService.getUrlMeta(urlArgs.url);
+    console.log(cachedData);
+    if (!cachedData) {
+      await this.cacheManager.set(urlArgs.url, serverResponse);
+    }
+    return serverResponse;
   }
 }

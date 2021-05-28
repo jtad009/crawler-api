@@ -1,73 +1,51 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+## Crawler GraphQL Api
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Crawler API, a service that parses a URL and returns meta-data from that web page. It employs redis to  ensure fast response for sites already visited.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+* [Technologies](#technologies)
+* [Getting Started using Docker](#getting-started-using-docker-recommended)
+* [Getting Started without Docker](#getting-started-without-docker)
 
-## Description
+## Technologies
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+* [Docker](https://docs.docker.com/get-docker/)
+* [NestJs](https://docs.nestjs.com/)
+* [Redis](https://redis.io/)
+* [GraphQL](https://graphql.org/)
 
-## Installation
+## Getting Started using Docker (Recommended)
 
-```bash
-$ npm install
-```
+### Docker Setup
 
-## Running the app
+* create a .env file from the .env.sample file `cp .env.example .env` and fill in the necessary environment variables
 
-```bash
-# development
-$ npm run start
+* Ensure docker is installed on your local machine. Refer to [Docker Guide](https://docs.docker.com/get-docker/)
+* Once docker is installed run `docker-compose build` from the root of the application
 
-# watch mode
-$ npm run start:dev
+### Running Docker Development Server
 
-# production mode
-$ npm run start:prod
-```
+* Start the development server by running `docker-compose up -d crawler` This will bring up the app and it's dependencies. It can take a few seconds to be able to access your local environment via browser even after you see 'done' on the console.
 
-## Test
+* Now access the server on `localhost:3000 or 127.0.0.1:3000` this depends on the port specified in the `.env` file but it defaults to 5200 is none is specified
 
-```bash
-# unit tests
-$ npm run test
+### Running Docker Test
 
-# e2e tests
-$ npm run test:e2e
+* Run `docker-compose run -e APP_ENV=test -e PORT=5201 crawler_test` to test the app
 
-# test coverage
-$ npm run test:cov
-```
+## Getting Started without Docker
 
-## Support
+### Setup
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+* create a .env file from the .env.sample file `cp .env.example .env` and fill in the necessary environment variables
 
-## Stay in touch
+* run `yarn` to install dependencies
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Running Development Server
 
-## License
+* Run `yarn run start:dev` to start the development server
 
-Nest is [MIT licensed](LICENSE).
+* Now access the server on `localhost:3000 or 127.0.0.1:3000` this depends on the port specified in the `.env` file but it defaults to 5200 is none is specified
+
+### Running Test
+
+* Run `yarn run test`
