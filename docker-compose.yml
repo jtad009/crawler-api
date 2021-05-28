@@ -1,0 +1,35 @@
+version: '3'
+services:
+  crawler:
+    build: .
+    ports:
+      - $PORT:$PORT
+    volumes:
+      - ./:/var/www/crawler_api:cached
+    env_file:
+      - ./.env
+    environment:
+      - APP_ENV=local
+      - PORT=${PORT:-5200}
+      - APP_PREFIX=${APP_PREFIX:-crawler}
+      - APP_NAME=${APP_PREFIX}_api
+      - GIT_BRANCH=develop
+    container_name: ${APP_PREFIX}_api
+    depends_on:
+      - crawler_cache
+    restart: unless-stopped
+   
+  crawler_cache:
+    image: redis:alpine
+    ports:
+      - $REDIS_HOST_PORT:6379
+    environment:
+      - REDIS_HOST_PORT=${REDIS_HOST_PORT:-77003}
+    volumes:
+      - crawler_cache:/var/cache/data
+    container_name: crawler_cache
+    restart: unless-stopped
+
+volumes:
+    crawler_data: {}
+    crawler_cache: {}
