@@ -13,23 +13,27 @@ if [[ $APP_ENV != "local" && $APP_ENV != "test" ]]; then
 fi
 
 #Change directory to APP_WORKSPACE
-cd "$WORKING_DIR" || exit 1
-
+if [ -d "$WORKING_DIR/$APP_WORKSPACE"] then  
+cd "$WORKING_DIR/$APP_WORKSPACE" || exit 1
+else
+mkdir -p $APP_WORKSPACE;
+cd "$WORKING_DIR/$APP_WORKSPACE" || exit 1
+fi
 #Install dependencies
 echo ">>Running yarn to install or update dependencies..."
 yarn
 pwd
 ls
 if [ $APP_ENV == "test" ]; then
-  chmod +x "$WORKING_DIR/arch/scripts/run-test.sh"
-  source "$WORKING_DIR/arch/scripts/run-test.sh" || exit 1
+  chmod +x "$WORKING_DIR/$APP_WORKSPACE/arch/scripts/run-test.sh"
+  source "$WORKING_DIR/$APP_WORKSPACE/arch/scripts/run-test.sh" || exit 1
   echo ">>Test ran successfully";exit 0
 else
   #Do any necessary setup Move this back
-  chmod +x "$WORKING_DIR/arch/scripts/setup.sh"
-  source "$WORKING_DIR/arch/scripts/setup.sh" || exit 1
+  chmod +x "$WORKING_DIR/$APP_WORKSPACE/arch/scripts/setup.sh"
+  source "$WORKING_DIR/$APP_WORKSPACE/arch/scripts/setup.sh" || exit 1
 fi
 
-chmod +x "$WORKING_DIR/arch/scripts/start-server.sh"
-source "$WORKING_DIR/arch/scripts/start-server.sh" || exit 1
+chmod +x "$WORKING_DIR/$APP_WORKSPACE/arch/scripts/start-server.sh"
+source "$WORKING_DIR/$APP_WORKSPACE/arch/scripts/start-server.sh" || exit 1
 
