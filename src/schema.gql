@@ -16,5 +16,5 @@ type Meta {
 }
 
 type Query {
-  getMetas: Meta!
+  getMetas(url: String!): Meta!
 }

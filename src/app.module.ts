@@ -4,6 +4,7 @@ import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CrawlModule } from './crawl/crawl.module';
+import { RedisModule } from './redis/redis.module';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { CrawlModule } from './crawl/crawl.module';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
     CrawlModule,
+    RedisModule,
   ],
   controllers: [AppController],
   providers: [AppService],
