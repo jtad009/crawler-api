@@ -22,6 +22,6 @@ RUN chmod +x /usr/local/bin/repo.sh && chmod +x /usr/local/bin/entrypoint.sh
 #set the terminal to xterm
 RUN export TERM=xterm
 
-WORKDIR /var/www/crawler_api
+WORKDIR /var/www
 
 CMD ["entrypoint.sh"]
