@@ -11,7 +11,7 @@ import * as redisStore from 'cache-manager-redis-store';
       useFactory: async (configService: ConfigService) => ({
         store: redisStore,
         host: configService.get('REDIS_URL'),
-        port: configService.get('REDIS_PORT'),
+        // port: configService.get('REDIS_PORT'),
         ttl: configService.get('CACHE_TTL'),
         max: configService.get('MAX_ITEM_IN_CACHE'),
       }),
