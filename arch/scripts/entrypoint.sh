@@ -13,12 +13,17 @@ if [[ $APP_ENV != "local" && $APP_ENV != "test" ]]; then
 fi
 
 #Change directory to APP_WORKSPACE
-cd "$WORKING_DIR/$APP_WORKSPACE" || exit 1
-
+if [ -d "$WORKING_DIR/$APP_WORKSPACE" ]; then  
+  cd "$WORKING_DIR/$APP_WORKSPACE" || exit 1
+else
+  mkdir -p $APP_WORKSPACE;
+  cd "$WORKING_DIR/$APP_WORKSPACE" || exit 1
+fi
 #Install dependencies
 echo ">>Running yarn to install or update dependencies..."
 yarn
-
+pwd
+ls
 if [ $APP_ENV == "test" ]; then
   chmod +x "$WORKING_DIR/$APP_WORKSPACE/arch/scripts/run-test.sh"
   source "$WORKING_DIR/$APP_WORKSPACE/arch/scripts/run-test.sh" || exit 1

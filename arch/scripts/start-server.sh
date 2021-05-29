@@ -11,5 +11,5 @@ else
     echo "Building app with yarn build"
     yarn build
     echo ">> Starting $APP_ENV server.."
-    yarn start:prod
+    yarn start:prod -p $PORT
 fi

@@ -10,18 +10,27 @@ export class CrawlResolver {
     private readonly metaService: CrawlService,
     private cacheManager: RedisService,
   ) {}
-
+  /**
+   * Get Meta Enpoint
+   * @param urlArgs
+   * @returns
+   */
   @Query(() => Meta)
   async getMetas(@Args() urlArgs: GetUrlArgs): Promise<Meta> {
     const cachedData = await this.cacheManager.get(urlArgs.url);
     if (cachedData) {
-      return cachedData;
+      return {
+        source: 'fromCache',
+        ...cachedData,
+      };
     }
     const serverResponse = await this.metaService.getUrlMeta(urlArgs.url);
-    console.log(cachedData);
     if (!cachedData) {
       await this.cacheManager.set(urlArgs.url, serverResponse);
     }
-    return serverResponse;
+    return {
+      source: 'fromNetwork',
+      ...serverResponse,
+    };
   }
 }

@@ -28,4 +28,7 @@ export class Meta {
   // eslint-disable-next-line prettier/prettier
   @Field({ nullable: true })
   image: Image;
+
+  @Field({ nullable: true })
+  source: string;
 }

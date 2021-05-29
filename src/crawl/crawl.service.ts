@@ -7,6 +7,11 @@ import { parse } from 'node-html-parser';
 
 @Injectable()
 export class CrawlService {
+  /**
+   *This function colates the meta ersults and the image results into the meta object returned 
+   * @param url
+   * @returns
+   */
   async getUrlMeta(url: string): Promise<M> {
     const metaObject = new M();
 
@@ -27,7 +32,11 @@ export class CrawlService {
 
     return metaObject;
   }
-
+  /**
+   * This function fetchs metas from a page using the html-parser package
+   * @param url
+   * @returns {Promise<any>}
+   */
   async getMetaFromUrl(url: string): Promise<any> {
     const cp = new Promise((resolve, reject) => {
       parser(url)
@@ -42,7 +51,11 @@ export class CrawlService {
     });
     return cp;
   }
-
+  /**
+   * THis function fetchs and extracts images from a url
+   * @param url
+   * @returns {Promise<Image>}
+   */
   async getHtml(url: string): Promise<Image> {
     const api = axios.create({
       headers: {
@@ -77,7 +90,11 @@ export class CrawlService {
     });
     return this.sortImageBySize(images);
   }
-
+  /**
+   * THis util function checks the img element for urls since most site lazy load images
+   * @param img
+   * @returns String
+   */
   getImageSrc(img: any): string {
     if (isUrl(img.getAttribute('src'))) {
       return img.getAttribute('src');
@@ -86,13 +103,16 @@ export class CrawlService {
       return img.getAttribute('data-lazy-src');
     }
   }
-
+  /**
+   * Sort image by size
+   * @param list
+   * @returns  Image
+   */
   sortImageBySize(list: any[]): Image {
     const image = list.sort((a, b) =>
       a.width > b.width && a.height > b.height ? -1 : 1,
     );
     const largestImage = new Image();
-    console.log(image.length);
     if (image.length) {
       largestImage.url = image[0]['url'];
       largestImage.width = image[0]['width'];

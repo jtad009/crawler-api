@@ -49,3 +49,28 @@ Crawler API, a service that parses a URL and returns meta-data from that web pag
 ### Running Test
 
 * Run `yarn run test`
+
+### To Query the endpoint
+
+#### The test expects meta information returned from a url that has been passed in. see example below
+
+
+import this [Postman collection]("https://www.getpostman.com/collections/d012391a8374dbcf63c0")
+OR visit  [App Demo]("https://crawler-graphql-api.herokuapp.com/graphql") and use the query below in the playground
+
+```
+{
+  getMetas(url: "https://graphql.org/") {
+    title
+    description,
+    source,
+    image{
+      url,
+      width,
+      height
+    }
+  }
+}
+
+
+```

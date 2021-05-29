@@ -24,4 +24,4 @@ RUN export TERM=xterm
 
 WORKDIR /var/www
 
-CMD ["entrypoint.sh"]
+#entrypoint.sh"]

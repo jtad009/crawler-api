@@ -13,6 +13,7 @@ type Meta {
   title: String
   description: String
   image: Image
+  source: String
 }
 
 type Query {
