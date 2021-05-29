@@ -10,6 +10,7 @@ import { RedisModule } from './redis/redis.module';
   imports: [
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      playground: true,
     }),
     CrawlModule,
     RedisModule,
