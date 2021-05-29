@@ -55,8 +55,8 @@ Crawler API, a service that parses a URL and returns meta-data from that web pag
 #### The test expects meta information returned from a url that has been passed in. see example below
 
 
-import this [Postman collection]("https://www.getpostman.com/collections/d012391a8374dbcf63c0")
-OR visit  [App Demo]("https://crawler-graphql-api.herokuapp.com/graphql") and use the query below in the playground
+import this [Postman collection](https://www.getpostman.com/collections/d012391a8374dbcf63c0)
+OR visit  [App Demo](https://crawler-graphql-api.herokuapp.com/graphql) and use the query below in the playground
 
 ```
 {
