@@ -10,7 +10,7 @@ import * as redisStore from 'cache-manager-redis-store';
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
         store: redisStore,
-        host: configService.get('REDIS_TLS_URL'),
+        host: configService.get('REDIS_URL'),
         port: 6480, //configService.get('REDIS_PORT'),
         // ttl: configService.get('CACHE_TTL'),
         // max: configService.get('MAX_ITEM_IN_CACHE'),
