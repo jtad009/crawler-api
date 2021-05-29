@@ -12,9 +12,10 @@ import * as redisStore from 'cache-manager-redis-store';
         store: redisStore,
         host: configService
           .get('REDIS_URL')
+          .split('@')[1]
           .split('@')[0]
-          .split('redis://:')[1]
-          .trim(),
+          .trim()
+          .split(':')[0],
         port: configService.get('REDIS_URL').split('@')[1].split(':')[1].trim(),
 
         // ttl: configService.get('CACHE_TTL'),
