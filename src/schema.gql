@@ -1,0 +1,21 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Image {
+  width: Float
+  height: Float
+  url: String
+}
+
+type Meta {
+  id: Int!
+  title: String
+  description: String
+  image: Image
+  source: String
+}
+
+type Query {
+  getMetas(url: String!): Meta!
+}

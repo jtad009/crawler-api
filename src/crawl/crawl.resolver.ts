@@ -10,7 +10,11 @@ export class CrawlResolver {
     private readonly metaService: CrawlService,
     private cacheManager: RedisService,
   ) {}
-
+  /**
+   * Get Meta Enpoint
+   * @param urlArgs
+   * @returns
+   */
   @Query(() => Meta)
   async getMetas(@Args() urlArgs: GetUrlArgs): Promise<Meta> {
     const cachedData = await this.cacheManager.get(urlArgs.url);

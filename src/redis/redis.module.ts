@@ -2,7 +2,6 @@ import { Module, CacheModule } from '@nestjs/common';
 import { RedisService } from './redis.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as redisStore from 'cache-manager-redis-store';
-import { url } from 'inspector';
 
 @Module({
   imports: [
@@ -10,7 +9,12 @@ import { url } from 'inspector';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
-        store: redisStore.create(configService.get('REDIS_URL')),
+        store: configService.get('REDIS_URL')
+          ? redisStore.create(configService.get('REDIS_URL'))
+          : redisStore.create({
+              host: configService.get('REDIS_HOST'),
+              port: configService.get('REDIS_POST'),
+            }),
       }),
     }),
   ],
