@@ -30,7 +30,7 @@ Crawler API, a service that parses a URL and returns meta-data from that web pag
 
 ### Running Docker Test
 
-* Run `docker-compose run -e APP_ENV=test -e PORT=5201 crawler_test` to test the app
+* Run `docker-compose -f docker-compose-test.yml up` to test the app
 
 ## Getting Started without Docker
 
