@@ -24,6 +24,7 @@ echo ">>Running yarn to install or update dependencies..."
 yarn
 pwd
 ls
+echo "$APP_ENV"
 if [ $APP_ENV == "test" ]; then
   chmod +x "$WORKING_DIR/$APP_WORKSPACE/arch/scripts/run-test.sh"
   source "$WORKING_DIR/$APP_WORKSPACE/arch/scripts/run-test.sh" || exit 1

@@ -21,12 +21,6 @@ export class RedisService {
     await this.cache.set(key, value, 1000);
   }
   /**
-   * Reset the store information
-   */
-  async reset() {
-    await this.cache.reset();
-  }
-  /**
    * Delete a store record
    * @param key
    */
