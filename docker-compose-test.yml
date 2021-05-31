@@ -6,18 +6,19 @@ services:
         user: tester
       context: ./
       dockerfile: Dockerfile
-    container_name: testing_app
+    container_name: crawler_test
     tty: true
-    env_file: .env.testing
+    env_file: .env.test
     environment:
       - APP_WORKSPACE=crawler_cd
+      - APP_ENV=test
     volumes:
       - ./:/var/www/crawler_cd:cached
     depends_on:
-        - crawler_cache
+        - crawler_cache_test
     
         
-  crawler_cache:
+  crawler_cache_test:
     image: redis:alpine
     ports:
       - $REDIS_HOST_PORT:6379
@@ -25,7 +26,7 @@ services:
       - crawler_test_cache:/var/cache/data
     environment:
       - REDIS_HOST_PORT=${REDIS_HOST_PORT:-77013}
-    container_name: crawler_cache
+    container_name: crawler_cache_test
     restart: unless-stopped
 
 volumes:

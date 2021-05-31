@@ -10,3 +10,4 @@ set -o pipefail
   yarn build
   printf ">>Running test with 'yarn test'..."
   yarn test
+  yarn test:e2e

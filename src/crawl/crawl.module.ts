@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { CrawlService } from './crawl.service';
 import { CrawlResolver } from './crawl.resolver';
-import { RedisModule } from 'src/redis/redis.module';
+import { RedisModule } from '../redis/redis.module';
 
 @Module({
   imports: [RedisModule],

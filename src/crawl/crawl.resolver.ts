@@ -1,5 +1,5 @@
 import { Resolver, Query, Args } from '@nestjs/graphql';
-import { RedisService } from 'src/redis/redis.service';
+import { RedisService } from '../redis/redis.service';
 import { CrawlService } from './crawl.service';
 import { GetUrlArgs } from './dto/args/get-url-args';
 import { Meta } from './meta.entity';

@@ -8,7 +8,7 @@ import { parse } from 'node-html-parser';
 @Injectable()
 export class CrawlService {
   /**
-   *This function colates the meta ersults and the image results into the meta object returned 
+   *This function colates the meta ersults and the image results into the meta object returned
    * @param url
    * @returns
    */
@@ -19,7 +19,7 @@ export class CrawlService {
 
     const result = await Promise.all([
       await this.getMetaFromUrl(url),
-      await this.getHtml(url),
+      await this.getImageFromHtml(url),
     ]);
     metaObject.description = result[0]['meta'].description;
     metaObject.title = result[0]['meta'].title;
@@ -38,7 +38,7 @@ export class CrawlService {
    * @returns {Promise<any>}
    */
   async getMetaFromUrl(url: string): Promise<any> {
-    const cp = new Promise((resolve, reject) => {
+    const promise = new Promise((resolve, reject) => {
       parser(url)
         .then((data) => {
           if (data) {
@@ -49,14 +49,14 @@ export class CrawlService {
           reject(err);
         });
     });
-    return cp;
+    return promise;
   }
   /**
    * THis function fetchs and extracts images from a url
    * @param url
    * @returns {Promise<Image>}
    */
-  async getHtml(url: string): Promise<Image> {
+  async getImageFromHtml(url: string): Promise<Image> {
     const api = axios.create({
       headers: {
         'User-Agent':
