@@ -88,7 +88,6 @@ export class CrawlService {
         images.push(img);
       }
     });
-    console.log(images);
     return this.sortImageBySize(images);
   }
   /**
